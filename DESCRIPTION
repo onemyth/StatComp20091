@@ -1,0 +1,17 @@
+Package: StatComp20091
+Type: Package
+Title: Course assignment for 'Statistical Computing' course
+Version: 1.0
+Date: 2020-12-20
+Author: HC
+Maintainer: HC <2083513124@qq.com>
+Description: Course assignment for 'Statistical Computing' course.
+License: GPL (>= 2)
+Imports: Rcpp (>= 1.0.5), knitr, rmarkdown
+LinkingTo: Rcpp
+Suggests: stats, graphics, bootstrap, boot, DAAG, RANN, energy, Ball, MASS, microbenchmark,  ks, rgl, KernSmooth
+Encoding: UTF-8
+VignetteBuilder: knitr
+RoxygenNote: 7.1.1
+URL: https://github.com/onemyth/StatComp20091
+BugReports: https://github.com/onemyth/StatComp20091/issues
