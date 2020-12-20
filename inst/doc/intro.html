@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="HC" />
+
+<meta name="date" content="2020-12-20" />
+
+<title>examp function</title>
+
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">examp function</h1>
+<h4 class="author">HC</h4>
+<h4 class="date">2020-12-20</h4>
+
+
+
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p><strong>examp</strong> is a simple R package including two functions. <em>Bobble</em> is a simple function developed to sort the given array of values. <em>fac</em> is a function developed to calculate the factorial. <em>fcount</em> , <em>fEcount</em> , <em>fE2count</em> ,are three different kernel functions. ## Benchmarking <em>Bobble</em> and <em>fac</em></p>
+<p>The source R code for <em>Bobble</em> is as follows:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>Bobble&lt;-<span class="cf">function</span>(L,n){</span>
+<span id="cb1-2"><a href="#cb1-2"></a> <span class="kw">library</span>(Rcpp)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="kw">cppFunction</span>(<span class="st">&#39;NumericMatrix Bobble(NumericMatrix x,int m){</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="st">  NumericMatrix mat(m, 1);</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="st">  NumericMatrix Index(m,1);</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="st">  for (int k=0;k&lt;m;k++){</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="st">    mat(k,0)=x(k,0);</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="st">    Index(k,0)=k+1;</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="st">  }</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="st">  int i,j,t;</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="st">  double l;</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="st">  for(i=0;i&lt;(m-1);i++){</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="st">     for(j=0;j&lt;(m-1-i);j++){</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="st">        if(mat(j,0)&gt;mat((j+1),0)){</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="st">        l=mat(j,0);mat(j,0)=mat((j+1),0);mat((j+1),0)=l;</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="st">        t=Index(j,0);Index(j,0)=Index((j+1),0);Index((j+1),0)=t;</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="st">        }}}</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="st">  return(Index);</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="st">}&#39;</span>)</span>
+<span id="cb1-20"><a href="#cb1-20"></a>LL&lt;-<span class="kw">numeric</span>(n)</span>
+<span id="cb1-21"><a href="#cb1-21"></a>Ind&lt;-<span class="kw">Bobble</span>(L,n)</span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="kw">return</span>(Ind)</span>
+<span id="cb1-23"><a href="#cb1-23"></a>}</span></code></pre></div>
+<p>This function aims to sort the given array of values.</p>
+<p>Here is the example:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>Bobble&lt;-<span class="cf">function</span>(L,n){</span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="kw">library</span>(Rcpp)</span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="kw">cppFunction</span>(<span class="st">&#39;NumericMatrix Bobble(NumericMatrix x,int m){</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="st">  NumericMatrix mat(m, 1);</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="st">  NumericMatrix Index(m,1);</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="st">  for (int k=0;k&lt;m;k++){</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="st">    mat(k,0)=x(k,0);</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="st">    Index(k,0)=k+1;</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="st">  }</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="st">  int i,j,t;</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="st">  double l;</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="st">  for(i=0;i&lt;(m-1);i++){</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="st">     for(j=0;j&lt;(m-1-i);j++){</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="st">        if(mat(j,0)&gt;mat((j+1),0)){</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="st">        l=mat(j,0);mat(j,0)=mat((j+1),0);mat((j+1),0)=l;</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="st">        t=Index(j,0);Index(j,0)=Index((j+1),0);Index((j+1),0)=t;</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="st">        }}}</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="st">  return(Index);</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="st">}&#39;</span>)</span>
+<span id="cb2-20"><a href="#cb2-20"></a>LL&lt;-<span class="kw">numeric</span>(n)</span>
+<span id="cb2-21"><a href="#cb2-21"></a>Ind&lt;-<span class="kw">Bobble</span>(L,n)</span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="kw">return</span>(Ind)</span>
+<span id="cb2-23"><a href="#cb2-23"></a>}</span>
+<span id="cb2-24"><a href="#cb2-24"></a>L&lt;-<span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">20</span>,<span class="dv">1</span>,<span class="dv">4</span>),<span class="dt">nrow=</span><span class="dv">20</span>)</span>
+<span id="cb2-25"><a href="#cb2-25"></a>n&lt;-<span class="dv">20</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>LL&lt;-<span class="kw">numeric</span>(n)</span>
+<span id="cb2-27"><a href="#cb2-27"></a>Ind&lt;-<span class="kw">Bobble</span>(L,n)</span>
+<span id="cb2-28"><a href="#cb2-28"></a>Res&lt;-<span class="kw">numeric</span>(n)</span>
+<span id="cb2-29"><a href="#cb2-29"></a><span class="cf">for</span> ( k <span class="cf">in</span>(<span class="dv">1</span><span class="op">:</span>n)){</span>
+<span id="cb2-30"><a href="#cb2-30"></a>  ids&lt;-Ind[k]</span>
+<span id="cb2-31"><a href="#cb2-31"></a>  Res[k]&lt;-L[ids]</span>
+<span id="cb2-32"><a href="#cb2-32"></a>  LL[k]&lt;-L[k,<span class="dv">1</span>]</span>
+<span id="cb2-33"><a href="#cb2-33"></a>}</span>
+<span id="cb2-34"><a href="#cb2-34"></a><span class="kw">print</span>(<span class="st">&quot;the original order is:</span><span class="ch">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;the original order is:\n&quot;</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">print</span>(LL)</span></code></pre></div>
+<pre><code>##  [1]  1.36172309  4.48652757  0.92034105  4.92288594 -0.81848572  3.02388448
+##  [7] -1.18123354 -1.52038996 -0.51813404  0.05573536 -0.43088585 -9.60384267
+## [13] -0.24320649  3.33005765  1.30111653  2.53249695 -1.20976430 -0.74964548
+## [19]  2.66952968  1.21564435</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">print</span>(<span class="st">&quot;the sorted order is:</span><span class="ch">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;the sorted order is:\n&quot;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">print</span>(Res)</span></code></pre></div>
+<pre><code>##  [1] -9.60384267 -1.52038996 -1.20976430 -1.18123354 -0.81848572 -0.74964548
+##  [7] -0.51813404 -0.43088585 -0.24320649  0.05573536  0.92034105  1.21564435
+## [13]  1.30111653  1.36172309  2.53249695  2.66952968  3.02388448  3.33005765
+## [19]  4.48652757  4.92288594</code></pre>
+<p>The source R code for <em>fac</em> is as follows:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>fac&lt;-<span class="cf">function</span>(n){</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="kw">library</span>(Rcpp)</span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="kw">cppFunction</span>(<span class="st">&#39;int fac(int m){</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="st">  int P;</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="st">  if((m==0)||(m==1)){</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="st">    P=1;</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="st">  }</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="st">  else {P=m*fac(m-1);}</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="st">  </span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="st">  return(P);</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="st">}&#39;</span>)</span>
+<span id="cb10-12"><a href="#cb10-12"></a></span>
+<span id="cb10-13"><a href="#cb10-13"></a>y&lt;-<span class="kw">fac</span>(n)</span>
+<span id="cb10-14"><a href="#cb10-14"></a></span>
+<span id="cb10-15"><a href="#cb10-15"></a><span class="kw">return</span>(y)</span>
+<span id="cb10-16"><a href="#cb10-16"></a>}</span></code></pre></div>
+<p>This function aims to calculate the factorial.</p>
+<p>Here is the example:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>fac&lt;-<span class="cf">function</span>(n){</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="kw">requireNamespace</span>(<span class="st">&#39;Rcpp&#39;</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="kw">cppFunction</span>(<span class="st">&#39;int fac(int m){</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="st">  int P;</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="st">  if((m==0)||(m==1)){</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="st">    P=1;</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="st">  }</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="st">  else {P=m*fac(m-1);}</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="st">  </span></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="st">  return(P);</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="st">}&#39;</span>)</span>
+<span id="cb11-12"><a href="#cb11-12"></a></span>
+<span id="cb11-13"><a href="#cb11-13"></a>y&lt;-<span class="kw">fac</span>(n)</span>
+<span id="cb11-14"><a href="#cb11-14"></a></span>
+<span id="cb11-15"><a href="#cb11-15"></a><span class="kw">return</span>(y)</span>
+<span id="cb11-16"><a href="#cb11-16"></a>}</span>
+<span id="cb11-17"><a href="#cb11-17"></a></span>
+<span id="cb11-18"><a href="#cb11-18"></a>n&lt;-<span class="kw">fac</span>(<span class="dv">5</span>)</span>
+<span id="cb11-19"><a href="#cb11-19"></a><span class="kw">print</span>(n)</span></code></pre></div>
+<pre><code>## [1] 120</code></pre>
+<p>The source R code for <em>fcount</em> is as follows:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>fcount&lt;-<span class="cf">function</span>(a1,a2,b1,b2,ha,hb){<span class="co">#Multiplicative kernel</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  s&lt;-<span class="dv">0</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  bar1&lt;-(b1<span class="op">-</span>a1)<span class="op">/</span>ha</span>
+<span id="cb13-4"><a href="#cb13-4"></a>  bar2&lt;-(b2<span class="op">-</span>a2)<span class="op">/</span>hb</span>
+<span id="cb13-5"><a href="#cb13-5"></a>  bar&lt;-((<span class="op">-</span><span class="dv">1</span><span class="op">&lt;=</span>bar1)<span class="op">&amp;</span>(bar1<span class="op">&lt;</span><span class="dv">1</span>)<span class="op">&amp;</span>(<span class="op">-</span><span class="dv">1</span><span class="op">&lt;=</span>bar2)<span class="op">&amp;</span>(bar2<span class="op">&lt;</span><span class="dv">1</span>))</span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="cf">if</span> (bar){s&lt;-<span class="dv">1</span>}</span>
+<span id="cb13-7"><a href="#cb13-7"></a>  <span class="kw">return</span>(s<span class="op">/</span>(ha<span class="op">*</span>hb))</span>
+<span id="cb13-8"><a href="#cb13-8"></a>}</span></code></pre></div>
+<p>Here is the example:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>fcount&lt;-<span class="cf">function</span>(a1,a2,b1,b2,ha,hb){<span class="co">#Multiplicative kernel</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>  s&lt;-<span class="dv">0</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>  bar1&lt;-(b1<span class="op">-</span>a1)<span class="op">/</span>ha</span>
+<span id="cb14-4"><a href="#cb14-4"></a>  bar2&lt;-(b2<span class="op">-</span>a2)<span class="op">/</span>hb</span>
+<span id="cb14-5"><a href="#cb14-5"></a>  bar&lt;-((<span class="op">-</span><span class="dv">1</span><span class="op">&lt;=</span>bar1)<span class="op">&amp;</span>(bar1<span class="op">&lt;</span><span class="dv">1</span>)<span class="op">&amp;</span>(<span class="op">-</span><span class="dv">1</span><span class="op">&lt;=</span>bar2)<span class="op">&amp;</span>(bar2<span class="op">&lt;</span><span class="dv">1</span>))</span>
+<span id="cb14-6"><a href="#cb14-6"></a>  <span class="cf">if</span> (bar){s&lt;-<span class="dv">1</span>}</span>
+<span id="cb14-7"><a href="#cb14-7"></a>  <span class="kw">return</span>(s<span class="op">/</span>(ha<span class="op">*</span>hb))</span>
+<span id="cb14-8"><a href="#cb14-8"></a>}</span>
+<span id="cb14-9"><a href="#cb14-9"></a></span>
+<span id="cb14-10"><a href="#cb14-10"></a> <span class="kw">library</span>(ks)</span></code></pre></div>
+<pre><code>## Warning: 程辑包&#39;ks&#39;是用R版本4.0.3 来建造的</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a> <span class="kw">library</span>(rgl)</span></code></pre></div>
+<pre><code>## Warning: 程辑包&#39;rgl&#39;是用R版本4.0.3 来建造的</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a> xx &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(faithful)</span>
+<span id="cb18-2"><a href="#cb18-2"></a> kdex &lt;-<span class="st"> </span><span class="kw">kde</span>(xx)</span>
+<span id="cb18-3"><a href="#cb18-3"></a> <span class="kw">data</span>(<span class="st">&quot;faithful&quot;</span>)</span>
+<span id="cb18-4"><a href="#cb18-4"></a> ef&lt;-faithful<span class="op">$</span>eruptions</span>
+<span id="cb18-5"><a href="#cb18-5"></a> wf&lt;-faithful<span class="op">$</span>waiting</span>
+<span id="cb18-6"><a href="#cb18-6"></a> h1&lt;-<span class="fl">0.3</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a> h2&lt;-<span class="dv">6</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a> x&lt;-<span class="kw">unlist</span>(kdex<span class="op">$</span>eval.points[<span class="dv">1</span>])</span>
+<span id="cb18-9"><a href="#cb18-9"></a> y&lt;-<span class="kw">unlist</span>(kdex<span class="op">$</span>eval.points[<span class="dv">2</span>])</span>
+<span id="cb18-10"><a href="#cb18-10"></a> n&lt;-<span class="kw">length</span>(ef)</span>
+<span id="cb18-11"><a href="#cb18-11"></a> n1&lt;-<span class="kw">length</span>(x)</span>
+<span id="cb18-12"><a href="#cb18-12"></a> n2&lt;-<span class="kw">length</span>(y)</span>
+<span id="cb18-13"><a href="#cb18-13"></a> z1&lt;-<span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">0</span>,n1<span class="op">*</span>n2),<span class="dt">nrow=</span>n1)</span>
+<span id="cb18-14"><a href="#cb18-14"></a> <span class="cf">for</span> ( i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n1){</span>
+<span id="cb18-15"><a href="#cb18-15"></a>   <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n2){</span>
+<span id="cb18-16"><a href="#cb18-16"></a>     k1&lt;-<span class="dv">0</span></span>
+<span id="cb18-17"><a href="#cb18-17"></a>     <span class="cf">for</span> (l <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</span>
+<span id="cb18-18"><a href="#cb18-18"></a>       k1&lt;-k1<span class="op">+</span><span class="kw">fcount</span>(ef[l],wf[l],x[i],y[j],h1,h2)</span>
+<span id="cb18-19"><a href="#cb18-19"></a>     }</span>
+<span id="cb18-20"><a href="#cb18-20"></a>     z1[i,j]&lt;-k1<span class="op">/</span>n</span>
+<span id="cb18-21"><a href="#cb18-21"></a>   }</span>
+<span id="cb18-22"><a href="#cb18-22"></a> }</span>
+<span id="cb18-23"><a href="#cb18-23"></a> <span class="kw">persp</span>(x, y, z1,<span class="dt">phi =</span> <span class="dv">30</span>, <span class="dt">theta =</span> <span class="dv">40</span>, <span class="dt">col =</span> <span class="st">&#39;black&#39;</span>, <span class="dt">border =</span> <span class="dv">0</span></span>
+<span id="cb18-24"><a href="#cb18-24"></a>       ,<span class="dt">xlab=</span><span class="st">&#39;eruptions&#39;</span>,<span class="dt">ylab=</span><span class="st">&#39;waiting&#39;</span></span>
+<span id="cb18-25"><a href="#cb18-25"></a>       ,<span class="dt">main=</span><span class="st">&#39;Results under Multiplicative kernel&#39;</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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Ms8wwg6DT2JoFNJ7Z2rhod8/mxc9dRW5X4KFml+Gre7QF2gkgKLD//WUSE+L5KBf8N9ajwDNtnL2JIexVp/yHGksgMya1Sw+9Ly68t0GIYe73d9/Wa66eBqfNzUm6edmCpCofPtDmL0AlbrN/fkSW2OSAaSGNCHy473IHIUy9Oh9gLZfVshrXID0ql7Pq/X8MR923AMZgrrbZy0yOw7pTaK4cZT8hQahH8LrTtaDRgYonhirB4uypxX/qd+dfjxo41XXGh0gLbtJlBnAnTcad0/frMXkT13HZ9fsuGQ2iQ7ZdxBcT9UsOug+QOfNjkX2weKmMAKbHfqg6xVGojECMgrFKixoJPe36tlyXyF6xIBkM9pdropX6vFLNH1orIDUzpAEFJWMVXIG9LIfR8YK6MP/3m3NhmNffalEYwWkB3k5E/rwcx9jeYXGC0itJcJeRvJKjReQikCDd7AxA+p1rCrXiAGNQwQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEAEBERAQAQEREBABAREQEC/Au+RPHq9emBRAAAAAElFTkSuQmCC" /><!-- --></p>
+<p>The source R code for <em>fEcount</em> is as follows:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>fEcount&lt;-<span class="cf">function</span>(a1,a2,b1,b2,ha,hb){<span class="co">#The multivariate Epanechnikov (spherical)</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  s&lt;-<span class="dv">0</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>  bar1&lt;-(b1<span class="op">-</span>a1)<span class="op">/</span>ha</span>
+<span id="cb19-4"><a href="#cb19-4"></a>  bar2&lt;-(b2<span class="op">-</span>a2)<span class="op">/</span>hb</span>
+<span id="cb19-5"><a href="#cb19-5"></a>  bar3&lt;-<span class="kw">c</span>(bar1,bar2)</span>
+<span id="cb19-6"><a href="#cb19-6"></a>  bar&lt;-<span class="kw">t</span>(bar3)<span class="op">%*%</span>(bar3)</span>
+<span id="cb19-7"><a href="#cb19-7"></a>  <span class="cf">if</span>(bar<span class="op">&lt;=</span><span class="dv">1</span>){</span>
+<span id="cb19-8"><a href="#cb19-8"></a>    s&lt;-(<span class="dv">1</span><span class="op">-</span>bar)</span>
+<span id="cb19-9"><a href="#cb19-9"></a>  }</span>
+<span id="cb19-10"><a href="#cb19-10"></a>  <span class="kw">return</span>(s<span class="op">/</span>(ha<span class="op">*</span>hb))</span>
+<span id="cb19-11"><a href="#cb19-11"></a>}</span></code></pre></div>
+<p>Here is the example:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>fEcount&lt;-<span class="cf">function</span>(a1,a2,b1,b2,ha,hb){<span class="co">#The multivariate Epanechnikov (spherical)</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>  s&lt;-<span class="dv">0</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a>  bar1&lt;-(b1<span class="op">-</span>a1)<span class="op">/</span>ha</span>
+<span id="cb20-4"><a href="#cb20-4"></a>  bar2&lt;-(b2<span class="op">-</span>a2)<span class="op">/</span>hb</span>
+<span id="cb20-5"><a href="#cb20-5"></a>  bar3&lt;-<span class="kw">c</span>(bar1,bar2)</span>
+<span id="cb20-6"><a href="#cb20-6"></a>  bar&lt;-<span class="kw">t</span>(bar3)<span class="op">%*%</span>(bar3)</span>
+<span id="cb20-7"><a href="#cb20-7"></a>  <span class="cf">if</span>(bar<span class="op">&lt;=</span><span class="dv">1</span>){</span>
+<span id="cb20-8"><a href="#cb20-8"></a>    s&lt;-(<span class="dv">1</span><span class="op">-</span>bar)</span>
+<span id="cb20-9"><a href="#cb20-9"></a>  }</span>
+<span id="cb20-10"><a href="#cb20-10"></a>  <span class="kw">return</span>(s<span class="op">/</span>(ha<span class="op">*</span>hb))</span>
+<span id="cb20-11"><a href="#cb20-11"></a>}</span>
+<span id="cb20-12"><a href="#cb20-12"></a></span>
+<span id="cb20-13"><a href="#cb20-13"></a> <span class="kw">library</span>(ks)</span>
+<span id="cb20-14"><a href="#cb20-14"></a> <span class="kw">library</span>(rgl)</span>
+<span id="cb20-15"><a href="#cb20-15"></a> xx &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(faithful)</span>
+<span id="cb20-16"><a href="#cb20-16"></a> kdex &lt;-<span class="st"> </span><span class="kw">kde</span>(xx)</span>
+<span id="cb20-17"><a href="#cb20-17"></a> <span class="kw">data</span>(<span class="st">&quot;faithful&quot;</span>)</span>
+<span id="cb20-18"><a href="#cb20-18"></a> ef&lt;-faithful<span class="op">$</span>eruptions</span>
+<span id="cb20-19"><a href="#cb20-19"></a> wf&lt;-faithful<span class="op">$</span>waiting</span>
+<span id="cb20-20"><a href="#cb20-20"></a> h1&lt;-<span class="fl">0.3</span></span>
+<span id="cb20-21"><a href="#cb20-21"></a> h2&lt;-<span class="dv">6</span></span>
+<span id="cb20-22"><a href="#cb20-22"></a> x&lt;-<span class="kw">unlist</span>(kdex<span class="op">$</span>eval.points[<span class="dv">1</span>])</span>
+<span id="cb20-23"><a href="#cb20-23"></a> y&lt;-<span class="kw">unlist</span>(kdex<span class="op">$</span>eval.points[<span class="dv">2</span>])</span>
+<span id="cb20-24"><a href="#cb20-24"></a> n&lt;-<span class="kw">length</span>(ef)</span>
+<span id="cb20-25"><a href="#cb20-25"></a> n1&lt;-<span class="kw">length</span>(x)</span>
+<span id="cb20-26"><a href="#cb20-26"></a> n2&lt;-<span class="kw">length</span>(y)</span>
+<span id="cb20-27"><a href="#cb20-27"></a> z2&lt;-<span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">0</span>,n1<span class="op">*</span>n2),<span class="dt">nrow=</span>n1)</span>
+<span id="cb20-28"><a href="#cb20-28"></a> <span class="cf">for</span> ( i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n1){</span>
+<span id="cb20-29"><a href="#cb20-29"></a>   <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n2){</span>
+<span id="cb20-30"><a href="#cb20-30"></a>     k2&lt;-<span class="dv">0</span></span>
+<span id="cb20-31"><a href="#cb20-31"></a>     <span class="cf">for</span> (l <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</span>
+<span id="cb20-32"><a href="#cb20-32"></a>       k2&lt;-k2<span class="op">+</span><span class="kw">fEcount</span>(ef[l],wf[l],x[i],y[j],h1,h2)</span>
+<span id="cb20-33"><a href="#cb20-33"></a>     }</span>
+<span id="cb20-34"><a href="#cb20-34"></a>     z2[i,j]&lt;-k2<span class="op">/</span>n</span>
+<span id="cb20-35"><a href="#cb20-35"></a>   }</span>
+<span id="cb20-36"><a href="#cb20-36"></a> }</span>
+<span id="cb20-37"><a href="#cb20-37"></a> <span class="kw">persp</span>(x, y, z2,<span class="dt">phi =</span> <span class="dv">30</span>, <span class="dt">theta =</span> <span class="dv">40</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">border =</span> <span class="dv">0</span>,</span>
+<span id="cb20-38"><a href="#cb20-38"></a>     <span class="dt">xlab=</span><span class="st">&#39;eruptions&#39;</span>,<span class="dt">ylab=</span><span class="st">&#39;waiting&#39;</span></span>
+<span id="cb20-39"><a href="#cb20-39"></a>       ,<span class="dt">main=</span><span class="st">&#39;Results under  Multivariate Epanechnikov (spherical)&#39;</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>The source R code for <em>fE2count</em> is as follows:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>fE2count&lt;-<span class="cf">function</span>(a1,a2,b1,b2,ha,hb){<span class="co">#The multivariate Epanechnikov (multiplicative)</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  s&lt;-<span class="dv">0</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>  bar1&lt;-(b1<span class="op">-</span>a1)<span class="op">/</span>ha</span>
+<span id="cb21-4"><a href="#cb21-4"></a>  bar2&lt;-(b2<span class="op">-</span>a2)<span class="op">/</span>hb</span>
+<span id="cb21-5"><a href="#cb21-5"></a>  bar&lt;-((<span class="kw">abs</span>(bar1)<span class="op">&lt;=</span><span class="dv">1</span>)<span class="op">&amp;</span>(<span class="kw">abs</span>(bar2)<span class="op">&lt;=</span><span class="dv">1</span>))</span>
+<span id="cb21-6"><a href="#cb21-6"></a>  <span class="cf">if</span> (bar){</span>
+<span id="cb21-7"><a href="#cb21-7"></a>    s&lt;-(<span class="dv">3</span><span class="op">/</span><span class="dv">4</span>)<span class="op">^</span><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>(bar1)<span class="op">^</span><span class="dv">2</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>(bar2)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb21-8"><a href="#cb21-8"></a>  }</span>
+<span id="cb21-9"><a href="#cb21-9"></a>  <span class="kw">return</span>(s<span class="op">/</span>(ha<span class="op">*</span>hb))</span>
+<span id="cb21-10"><a href="#cb21-10"></a>}</span></code></pre></div>
+<p>Here is the example:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>fE2count&lt;-<span class="cf">function</span>(a1,a2,b1,b2,ha,hb){<span class="co">#The multivariate Epanechnikov (multiplicative)</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>  s&lt;-<span class="dv">0</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>  bar1&lt;-(b1<span class="op">-</span>a1)<span class="op">/</span>ha</span>
+<span id="cb22-4"><a href="#cb22-4"></a>  bar2&lt;-(b2<span class="op">-</span>a2)<span class="op">/</span>hb</span>
+<span id="cb22-5"><a href="#cb22-5"></a>  bar&lt;-((<span class="kw">abs</span>(bar1)<span class="op">&lt;=</span><span class="dv">1</span>)<span class="op">&amp;</span>(<span class="kw">abs</span>(bar2)<span class="op">&lt;=</span><span class="dv">1</span>))</span>
+<span id="cb22-6"><a href="#cb22-6"></a>  <span class="cf">if</span> (bar){</span>
+<span id="cb22-7"><a href="#cb22-7"></a>    s&lt;-(<span class="dv">3</span><span class="op">/</span><span class="dv">4</span>)<span class="op">^</span><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>(bar1)<span class="op">^</span><span class="dv">2</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>(bar2)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb22-8"><a href="#cb22-8"></a>  }</span>
+<span id="cb22-9"><a href="#cb22-9"></a>  <span class="kw">return</span>(s<span class="op">/</span>(ha<span class="op">*</span>hb))</span>
+<span id="cb22-10"><a href="#cb22-10"></a>}</span>
+<span id="cb22-11"><a href="#cb22-11"></a></span>
+<span id="cb22-12"><a href="#cb22-12"></a><span class="kw">library</span>(ks)</span>
+<span id="cb22-13"><a href="#cb22-13"></a><span class="kw">library</span>(rgl)</span>
+<span id="cb22-14"><a href="#cb22-14"></a>xx &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(faithful)</span>
+<span id="cb22-15"><a href="#cb22-15"></a>kdex &lt;-<span class="st"> </span><span class="kw">kde</span>(xx)</span>
+<span id="cb22-16"><a href="#cb22-16"></a><span class="kw">data</span>(<span class="st">&quot;faithful&quot;</span>)</span>
+<span id="cb22-17"><a href="#cb22-17"></a>ef&lt;-faithful<span class="op">$</span>eruptions</span>
+<span id="cb22-18"><a href="#cb22-18"></a>wf&lt;-faithful<span class="op">$</span>waiting</span>
+<span id="cb22-19"><a href="#cb22-19"></a>h1&lt;-<span class="fl">0.3</span></span>
+<span id="cb22-20"><a href="#cb22-20"></a>h2&lt;-<span class="dv">6</span></span>
+<span id="cb22-21"><a href="#cb22-21"></a>x&lt;-<span class="kw">unlist</span>(kdex<span class="op">$</span>eval.points[<span class="dv">1</span>])</span>
+<span id="cb22-22"><a href="#cb22-22"></a>y&lt;-<span class="kw">unlist</span>(kdex<span class="op">$</span>eval.points[<span class="dv">2</span>])</span>
+<span id="cb22-23"><a href="#cb22-23"></a>n&lt;-<span class="kw">length</span>(ef)</span>
+<span id="cb22-24"><a href="#cb22-24"></a>n1&lt;-<span class="kw">length</span>(x)</span>
+<span id="cb22-25"><a href="#cb22-25"></a>n2&lt;-<span class="kw">length</span>(y)</span>
+<span id="cb22-26"><a href="#cb22-26"></a>z3&lt;-<span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">0</span>,n1<span class="op">*</span>n2),<span class="dt">nrow=</span>n1)</span>
+<span id="cb22-27"><a href="#cb22-27"></a><span class="cf">for</span> ( i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n1){</span>
+<span id="cb22-28"><a href="#cb22-28"></a>   <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n2){</span>
+<span id="cb22-29"><a href="#cb22-29"></a>     k3&lt;-<span class="dv">0</span></span>
+<span id="cb22-30"><a href="#cb22-30"></a>     <span class="cf">for</span> (l <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</span>
+<span id="cb22-31"><a href="#cb22-31"></a>       k3&lt;-k3<span class="op">+</span><span class="kw">fE2count</span>(ef[l],wf[l],x[i],y[j],h1,h2)</span>
+<span id="cb22-32"><a href="#cb22-32"></a>     }</span>
+<span id="cb22-33"><a href="#cb22-33"></a>    z3[i,j]&lt;-k3<span class="op">/</span>n</span>
+<span id="cb22-34"><a href="#cb22-34"></a>   }</span>
+<span id="cb22-35"><a href="#cb22-35"></a>}</span>
+<span id="cb22-36"><a href="#cb22-36"></a><span class="kw">persp</span>(x, y, z3,<span class="dt">phi =</span> <span class="dv">30</span>, <span class="dt">theta =</span> <span class="dv">40</span>, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">border =</span> <span class="dv">0</span></span>
+<span id="cb22-37"><a href="#cb22-37"></a>       ,<span class="dt">xlab=</span><span class="st">&#39;eruptions&#39;</span>,<span class="dt">ylab=</span><span class="st">&#39;waiting&#39;</span></span>
+<span id="cb22-38"><a href="#cb22-38"></a>       ,<span class="dt">main=</span><span class="st">&#39;Results under  Multivariate Epanechnikov (multiplicative)&#39;</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
